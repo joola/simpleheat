@@ -96,7 +96,7 @@ simpleheat.prototype = {
     },
 
     draw: function (minOpacity) {
-    	//return if width or height invalid
+    	  //return if width or height invalid
         if (!this._width || !this._height) return this;
          
         if (!this._circle) this.radius(this.defaultRadius);
