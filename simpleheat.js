@@ -5,6 +5,8 @@ if (typeof module !== 'undefined') module.exports = simpleheat;
 function simpleheat(canvas) {
     if (!(this instanceof simpleheat)) return new simpleheat(canvas);
 
+    console.log('simpleheat, version 0.3.2')
+
     this._canvas = canvas = typeof canvas === 'string' ? document.getElementById(canvas) : canvas;
 
     this._ctx = canvas.getContext('2d');
