@@ -1,9 +1,10 @@
 'use strict';
 
+console.log('simpleheat, version 0.3.2-fix')
+
 if (typeof module !== 'undefined') module.exports = simpleheat;
 
 function simpleheat(canvas) {
-    console.log('simpleheat, version 0.3.2')
 
     if (!(this instanceof simpleheat)) return new simpleheat(canvas);
     this._canvas = canvas = typeof canvas === 'string' ? document.getElementById(canvas) : canvas;
