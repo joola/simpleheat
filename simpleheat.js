@@ -1,6 +1,6 @@
 'use strict';
 
-console.log('simpleheat, version 0.3.3-fix')
+console.log('simpleheat, version 0.3.5-fix')
 
 if (typeof module !== 'undefined') module.exports = simpleheat;
 
@@ -103,9 +103,11 @@ simpleheat.prototype = {
     },
 
     draw: function (minOpacity) {
+        console.log('this._width', this._width , this._height)
     	  //return if width or height invalid
         if (!this._width || !this._height) return this;
-         
+        if (this._width === 0 || this._height === 0) return this;
+       
         if (!this._circle) this.radius(this.defaultRadius);
         if (!this._grad) this.gradient(this.defaultGradient);
 
@@ -121,10 +123,14 @@ simpleheat.prototype = {
         }
 
         // colorize the heatmap, using opacity value of each pixel to get the right color from our gradient
-        var colored = bufferedCtx.getImageData(0, 0, this._width, this._height);
-        this._colorize(colored.data, this._grad);
-        ctx.putImageData(colored, 0, 0);
-
+        try {
+          var colored = bufferedCtx.getImageData(0, 0, this._width, this._height);
+          this._colorize(colored.data, this._grad);
+          ctx.putImageData(colored, 0, 0);
+        }
+        catch (ex) {
+          console.log('Failed to draw heat layer', ex);
+        }
         return this;
     },
 
